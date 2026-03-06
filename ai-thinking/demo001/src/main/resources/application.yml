@@ -1,0 +1,6 @@
+
+spring:
+  application:
+    name: demo001
+server:
+  port: 7878

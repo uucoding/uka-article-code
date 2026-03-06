@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Qwen 3.5 视觉计算中枢</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+    :root {
+      --bg-color: #050505;
+      --panel-bg: rgba(20, 20, 30, 0.8);
+      --primary: #00f3ff;   /* 赛博蓝 */
+      --accent: #ff003c;    /* 警示红 */
+      --text-main: #e0f6ff;
+      --text-dim: #5c7080;
+      --grid-color: rgba(0, 243, 255, 0.1);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      background-image:
+              linear-gradient(var(--grid-color) 1px, transparent 1px),
+              linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: var(--text-main);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* 主容器：HUD风格 */
+    .cyber-container {
+      width: 1200px;
+      height: 700px;
+      background: var(--panel-bg);
+      border: 1px solid var(--text-dim);
+      display: flex;
+      position: relative;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.05);
+      backdrop-filter: blur(5px);
+      /* 切角设计 */
+      clip-path: polygon(
+              20px 0, 100% 0,
+              100% calc(100% - 20px), calc(100% - 20px) 100%,
+              0 100%, 0 20px
+      );
+    }
+
+    /* 装饰性角标 */
+    .corner-deco {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--primary);
+      z-index: 10;
+    }
+    .tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+    .tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+    .bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+    .br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+    /* 左侧上传区 */
+    .upload-zone {
+      flex: 1;
+      border-right: 1px solid var(--text-dim);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary);
+      box-shadow: 0 0 10px var(--primary);
+      opacity: 0.5;
+      animation: scan 3s infinite linear;
+      pointer-events: none;
+      display: none;
+    }
+    .upload-zone:hover .scan-line { display: block; }
+
+    @keyframes scan {
+      0% { top: 0; opacity: 0; }
+      50% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    .preview-box {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed var(--text-dim);
+      transition: 0.3s;
+      background: rgba(0,0,0,0.3);
+    }
+    .preview-box:hover { border-color: var(--primary); box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.1); }
+
+    .preview-img { max-width: 95%; max-height: 95%; object-fit: contain; border: 1px solid var(--primary); }
+
+    .placeholder { text-align: center; cursor: pointer; color: var(--text-dim); }
+    .icon-plus { font-size: 60px; color: var(--primary); margin-bottom: 10px; text-shadow: 0 0 10px var(--primary); }
+
+    /* 右侧控制台 */
+    .control-zone {
+      flex: 1.2;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .system-header {
+      font-size: 14px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      border-bottom: 1px solid var(--text-dim);
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* 仪表盘 */
+    .dashboard { display: flex; gap: 20px; margin-bottom: 20px; }
+
+    .stat-box {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 15px;
+      border-left: 4px solid var(--text-dim);
+      position: relative;
+    }
+    .stat-box.active {
+      border-color: var(--primary);
+      background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), transparent);
+    }
+
+    .stat-label { font-size: 12px; color: var(--text-dim); margin-bottom: 5px; text-transform: uppercase; }
+    .stat-value { font-size: 24px; font-weight: bold; color: var(--text-main); font-family: 'Impact', sans-serif; letter-spacing: 1px; }
+    .unit { font-size: 12px; color: var(--text-dim); font-weight: normal; font-family: monospace; }
+    .active .stat-value { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+    /* 终端输出 */
+    .terminal-window {
+      flex: 1;
+      background: #000;
+      border: 1px solid var(--text-dim);
+      padding: 15px;
+      margin-bottom: 25px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #a8b2c1;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    }
+
+    /* 终端扫描线效果 */
+    .terminal-window::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      z-index: 2;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+    }
+
+    .log-entry { margin-bottom: 8px; }
+    .log-time { color: var(--text-dim); margin-right: 10px; }
+    .log-content { color: var(--text-main); white-space: pre-wrap; }
+    .cursor { display: inline-block; width: 8px; height: 15px; background: var(--primary); animation: blink 1s infinite; vertical-align: middle; }
+
+    /* 按钮组 */
+    .btn-group { display: flex; gap: 20px; }
+
+    .cyber-btn {
+      flex: 1;
+      padding: 15px;
+      background: transparent;
+      border: 1px solid var(--text-dim);
+      color: var(--text-dim);
+      font-family: inherit;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      transition: 0.3s;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+
+    .btn-std:hover {
+      border-color: var(--text-main);
+      color: var(--bg-color);
+      background: var(--text-main);
+      box-shadow: 0 0 15px var(--text-main);
+    }
+
+    .btn-fast {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-fast:hover {
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .cyber-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      border-color: #333;
+      color: #555;
+      box-shadow: none;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* 滚动条 */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <div class="cyber-container">
+    <!-- 四角装饰 -->
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+
+    <!-- 左侧上传区 -->
+    <div class="upload-zone" @click="triggerUpload" @paste="handlePaste">
+      <div class="scan-line"></div>
+      <input type="file" ref="fileInput" @change="handleFile" accept="image/*" style="display: none">
+
+      <div class="preview-box">
+        <img v-if="preview" :src="preview" class="preview-img">
+        <div v-else class="placeholder">
+          <div class="icon-plus">+</div>
+          <p>点击接入图像数据</p>
+          <p style="font-size: 12px; color: var(--text-dim); margin-top:5px;">或粘贴剪贴板内容 (Ctrl+V)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧控制区 -->
+    <div class="control-zone">
+      <div class="system-header">
+        <span>使用模型: qwen3.5:0.8b</span>
+        <span>公众号: 春风不晚</span>
+      </div>
+
+      <!-- 仪表盘 -->
+      <div class="dashboard">
+        <div class="stat-box" :class="{ active: mode === 'standard' }">
+          <div class="stat-label">标准模式</div>
+          <div class="stat-value">{{ stdTime }} <span class="unit">s</span></div>
+        </div>
+        <div class="stat-box" :class="{ active: mode === 'fast' }">
+          <div class="stat-label">极速模式</div>
+          <div class="stat-value">{{ fastTime }} <span class="unit">s</span></div>
+        </div>
+      </div>
+
+      <!-- 终端输出 -->
+      <div class="terminal-window" ref="terminal">
+        <div class="log-entry" v-if="!loading && !result">
+          <span class="log-time">[系统]</span>
+          <span class="log-content">等待视觉信号输入...</span>
+          <span class="cursor"></span>
+        </div>
+
+        <div class="log-entry" v-if="loading">
+          <span class="log-time" style="color: var(--primary)">[PROCESSING]</span>
+          <span class="log-content">正在建立连接...<br>正在上传图像...<br>模型推理中...</span>
+        </div>
+
+        <div class="log-entry" v-if="result">
+          <span class="log-time" style="color: #0f0">[SUCCESS]</span>
+          <span class="log-content">{{ result }}</span>
+        </div>
+      </div>
+
+      <!-- 按钮组 -->
+      <div class="btn-group">
+        <button class="cyber-btn btn-std" @click="analyze('std')" :disabled="!base64 || loading">
+          标准识别
+        </button>
+        <button class="cyber-btn btn-fast" @click="analyze('fast')" :disabled="!base64 || loading">
+          极速识别
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const { createApp, ref, onMounted, nextTick } = Vue;
+
+  createApp({
+    setup() {
+      const fileInput = ref(null);
+      const preview = ref(null);
+      const base64 = ref(null);
+      const result = ref(null);
+      const loading = ref(false);
+      const stdTime = ref('0.00');
+      const fastTime = ref('0.00');
+      const mode = ref('');
+      const terminal = ref(null);
+
+      const triggerUpload = () => fileInput.value.click();
+      /**
+       * 转base64
+       * @param file
+       */
+      const processFile = (file) => {
+        if(!file || !file.type.startsWith('image/')) return;
+        preview.value = URL.createObjectURL(file);
+        result.value = null;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => base64.value = reader.result.split(',')[1];
+      };
+
+      const handleFile = (e) => processFile(e.target.files[0]);
+
+      onMounted(() => {
+        window.addEventListener('paste', (e) => {
+          const items = e.clipboardData.items;
+          for(let item of items) if(item.type.includes('image')) processFile(item.getAsFile());
+        });
+      });
+
+      /**
+       * 上传图片解析
+       * @param type
+       * @returns {Promise<void>}
+       */
+      const analyze = async (type) => {
+        if(!base64.value) return;
+        loading.value = true;
+        result.value = "";
+        mode.value = type === 'fast' ? 'fast' : 'standard';
+
+        const api = type === 'fast' ? '/api/vision/analyze-fast' : '/api/vision/analyze';
+        const startTime = performance.now();
+
+        try {
+          const res = await axios.post(api, { image: base64.value });
+          const duration = ((performance.now() - startTime) / 1000).toFixed(2);
+
+          if (type === 'fast') fastTime.value = duration;
+          else stdTime.value = duration;
+
+          result.value = JSON.stringify(res.data, null, 2);
+        } catch (e) {
+          result.value = "错误: " + e.message;
+        } finally {
+          loading.value = false;
+          // 自动滚动到底部
+          nextTick(() => {
+            if(terminal.value) terminal.value.scrollTop = terminal.value.scrollHeight;
+          });
+        }
+      };
+
+      return {
+        fileInput, preview, base64, result, loading,
+        stdTime, fastTime, mode, terminal,
+        triggerUpload, handleFile, analyze
+      };
+    }
+  }).mount('#app');
+</script>
+
+</body>
+</html>
