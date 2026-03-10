@@ -5,14 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.uka</groupId>
-        <artifactId>uka-article-code</artifactId>
+        <artifactId>ai-thinking</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ai-thinking</artifactId>
+
+    <artifactId>spring-ai-examples</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>spring-ai-examples</module>
+        <module>springai-demo001</module>
     </modules>
 
     <properties>
@@ -20,5 +21,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
 
 </project>

@@ -1,0 +1,16 @@
+spring:
+  ai:
+    openai:
+      # 网关地址：由于各种原因，我们选择使用中转站的方式来体验OpenAI的API
+      base-url: https://api.openai-hk.com
+      # 密钥认证：使用变量
+      api-key: ${OPEN_AI_API_KEY}
+      chat:
+        # 指定调用的模型名称 gpt-5.4
+        options:
+          model: gpt-5.4
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY}
+#    model:
+##      指定主模型
+      chat: deepseek
