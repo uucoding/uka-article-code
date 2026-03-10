@@ -11,6 +11,6 @@ spring:
           model: gpt-5.4
     deepseek:
       api-key: ${DEEPSEEK_API_KEY}
-#    model:
+    model:
 ##      指定主模型
       chat: deepseek

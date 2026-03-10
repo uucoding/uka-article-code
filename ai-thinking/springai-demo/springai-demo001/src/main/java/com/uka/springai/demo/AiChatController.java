@@ -1,4 +1,4 @@
-package com.uka.springai.demo001;
+package com.uka.springai.demo;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;

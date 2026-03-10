@@ -9,11 +9,9 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+
     <artifactId>ai-thinking</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>spring-ai-examples</module>
-    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
