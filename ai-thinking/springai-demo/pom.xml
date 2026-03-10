@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>springai-demo001</module>
+        <module>springai-demo002</module>
     </modules>
 
     <properties>

@@ -1,0 +1,10 @@
+
+spring:
+  ai:
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY}
+    model:
+##      指定主模型
+      chat: deepseek
+  profiles:
+    active: params

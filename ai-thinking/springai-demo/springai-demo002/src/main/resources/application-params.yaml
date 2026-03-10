@@ -1,0 +1,8 @@
+spring:
+  ai:
+    deepseek:
+      chat:
+        options:
+          top-p: 0.7
+          temperature: 0.1 # 降低温度不发散思维
+          max-tokens: 50 # 最大生成长度
