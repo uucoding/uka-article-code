@@ -4,6 +4,21 @@
 
 ---
 
+## 📖 系列课程总览
+
+| 课次  | 主题                         | 模块               |
+|-----|----------------------------|------------------|
+| 第一课 | 课程介绍                       | -                |
+| 第二课 | Spring AI 环境搭建与 ChatClient | springai-demo001 |
+| 第三课 | 大模型人设与核心角色                 | springai-demo002 |
+| 第四课 | 提示词模板与多模态                  | springai-demo003 |
+| 第五课 | 结构化输出与流式响应                 | springai-demo004 |
+| 第六课 | Advisor 切面拦截               | springai-demo005 |
+| 第七课 | ChatMemory 对话管理            | springai-demo006 |
+| 第八课 | Token 记忆裁剪与防溢出              | springai-demo007 |
+
+
+---
 ## 📚 课程目录
 
 ### 第一课：课程介绍
@@ -46,26 +61,18 @@
 
 ---
 
+### 第八课：Token 记忆裁剪
+- **springai-demo007** - [Java 程序员的 AI 转型第八课：告别 Token 刺客！Spring AI 记忆裁剪源码解密与 Token 级防溢出终极奥义](./springai-demo007)
+- 内容：Token 裁剪策略、记忆管理源码解析、防溢出机制
+
+---
+
 ## 🚀 快速开始
 
 1. 确保已配置 Java 17+ 环境
 2. 在各子模块中配置 `application.properties` 或 `application.yml`
 3. 填入你的 AI API Key
 4. 运行对应模块的启动类
-
----
-
-## 📖 系列课程总览
-
-| 课次  | 主题                         | 模块               |
-|-----|----------------------------|------------------|
-| 第一课 | 课程介绍                       | -                |
-| 第二课 | Spring AI 环境搭建与 ChatClient | springai-demo001 |
-| 第三课 | 大模型人设与核心角色                 | springai-demo002 |
-| 第四课 | 提示词模板与多模态                  | springai-demo003 |
-| 第五课 | 结构化输出与流式响应                 | springai-demo004 |
-| 第六课 | Advisor 切面拦截               | springai-demo005 |
-| 第七课 | ChatMemory 对话管理            | springai-demo006 |
 
 ---
 
