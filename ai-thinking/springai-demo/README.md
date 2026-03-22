@@ -15,7 +15,9 @@
 | 第五课 | 结构化输出与流式响应                 | springai-demo004 |
 | 第六课 | Advisor 切面拦截               | springai-demo005 |
 | 第七课 | ChatMemory 对话管理            | springai-demo006 |
-| 第八课 | Token 记忆裁剪与防溢出              | springai-demo007 |
+| 第八课 | Token 记忆裁剪与防溢出             | springai-demo007 |
+| 第九课 | RAG核心架构                    | -                |
+| 第十课 | DocumentReader 文档解析器实战     | springai-demo008               |
 
 
 ---
@@ -64,6 +66,18 @@
 ### 第八课：Token 记忆裁剪
 - **springai-demo007** - [Java 程序员的 AI 转型第八课：告别 Token 刺客！Spring AI 记忆裁剪源码解密与 Token 级防溢出终极奥义](./springai-demo007)
 - 内容：Token 裁剪策略、记忆管理源码解析、防溢出机制
+
+---
+
+### 第九课：RAG (检索增强生成) 核心架构
+- **springai-demo008** - [Java 程序员的 AI 转型第九课：突破知识边界！企业级 RAG (检索增强生成) 核心架构与 ETL 管道初探](https://mp.weixin.qq.com/s/LozbtvIydZAG38SclMRn2w)
+- 内容：RAG (检索增强生成) 核心架构介绍，及Document领域模型
+
+---
+
+### 第十课：DocumentReader 文档解析器实战
+- **springai-demo008** - [Java 程序员的 AI 转型第八课：告别 Token 刺客！Spring AI 记忆裁剪源码解密与 Token 级防溢出终极奥义](./springai-demo008)
+- 内容：文档解析实战，自定义读取器
 
 ---
 
