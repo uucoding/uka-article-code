@@ -6,18 +6,19 @@
 
 ## 📖 系列课程总览
 
-| 课次  | 主题                         | 模块               |
-|-----|----------------------------|------------------|
-| 第一课 | 课程介绍                       | -                |
-| 第二课 | Spring AI 环境搭建与 ChatClient | springai-demo001 |
-| 第三课 | 大模型人设与核心角色                 | springai-demo002 |
-| 第四课 | 提示词模板与多模态                  | springai-demo003 |
-| 第五课 | 结构化输出与流式响应                 | springai-demo004 |
-| 第六课 | Advisor 切面拦截               | springai-demo005 |
-| 第七课 | ChatMemory 对话管理            | springai-demo006 |
-| 第八课 | Token 记忆裁剪与防溢出             | springai-demo007 |
-| 第九课 | RAG核心架构                    | -                |
-| 第十课 | DocumentReader 文档解析器实战     | springai-demo008               |
+| 课次   | 主题                         | 模块               |
+|------|----------------------------|------------------|
+| 第一课  | 课程介绍                       | -                |
+| 第二课  | Spring AI 环境搭建与 ChatClient | springai-demo001 |
+| 第三课  | 大模型人设与核心角色                 | springai-demo002 |
+| 第四课  | 提示词模板与多模态                  | springai-demo003 |
+| 第五课  | 结构化输出与流式响应                 | springai-demo004 |
+| 第六课  | Advisor 切面拦截               | springai-demo005 |
+| 第七课  | ChatMemory 对话管理            | springai-demo006 |
+| 第八课  | Token 记忆裁剪与防溢出             | springai-demo007 |
+| 第九课  | RAG核心架构                    | -                |
+| 第十课  | DocumentReader 文档解析器实战     | springai-demo008 |
+| 第十一课 | DocumentTransformer 文本切分术     | springai-demo009 |
 
 
 ---
@@ -76,7 +77,13 @@
 ---
 
 ### 第十课：DocumentReader 文档解析器实战
-- **springai-demo008** - [Java 程序员的 AI 转型第八课：告别 Token 刺客！Spring AI 记忆裁剪源码解密与 Token 级防溢出终极奥义](./springai-demo008)
+- **springai-demo008** - [Java 程序员的 AI 转型第十课：化繁为简！Spring AI 万能文档解析器 (Document Readers) 与元数据提取实战](./springai-demo008)
+- 内容：文档解析实战，自定义读取器
+
+---
+
+### 第十一课： DocumentTransformer 文本切分术
+- **springai-demo008** - [Java 程序员的 AI 转型第十一课：文本切分术！Spring AI 智能分块 (Text Splitters) 与 Overlap 语义防割裂指南](./springai-demo009)
 - 内容：文档解析实战，自定义读取器
 
 ---
