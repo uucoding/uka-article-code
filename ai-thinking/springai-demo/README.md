@@ -19,6 +19,7 @@
 | 第九课  | RAG核心架构                    | -                |
 | 第十课  | DocumentReader 文档解析器实战     | springai-demo008 |
 | 第十一课 | DocumentTransformer 文本切分术     | springai-demo009 |
+| 第十二课 | 文本的数学魔法：Embeddings (向量化)     | springai-demo010 |
 
 
 ---
@@ -85,6 +86,12 @@
 ### 第十一课： DocumentTransformer 文本切分术
 - **springai-demo008** - [Java 程序员的 AI 转型第十一课：文本切分术！Spring AI 智能分块 (Text Splitters) 与 Overlap 语义防割裂指南](./springai-demo009)
 - 内容：文档解析实战，自定义读取器
+
+---
+
+### 第十一课： 文本的数学魔法：Embeddings (向量化)
+- **springai-demo008** - [JJava 程序员的 AI 转型第十二课：文本的数学魔法：Embeddings (向量化)](./springai-demo010)
+- 内容：结合 Spring AI 的 EmbeddingModel 与 Apache Math 库，用纯代码精准计算不同文本之间的语义相似度
 
 ---
 
