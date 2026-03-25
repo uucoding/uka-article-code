@@ -20,6 +20,7 @@
 | 第十课  | DocumentReader 文档解析器实战     | springai-demo008 |
 | 第十一课 | DocumentTransformer 文本切分术     | springai-demo009 |
 | 第十二课 | 文本的数学魔法：Embeddings (向量化)     | springai-demo010 |
+| 第十三课 | 向量数据库 与 ETL 全链路入库实战     | springai-demo011 |
 
 
 ---
@@ -84,14 +85,18 @@
 ---
 
 ### 第十一课： DocumentTransformer 文本切分术
-- **springai-demo008** - [Java 程序员的 AI 转型第十一课：文本切分术！Spring AI 智能分块 (Text Splitters) 与 Overlap 语义防割裂指南](./springai-demo009)
-- 内容：文档解析实战，自定义读取器
+- **springai-demo009** - [Java 程序员的 AI 转型第十一课：文本切分术！Spring AI 智能分块 (Text Splitters) 与 Overlap 语义防割裂指南](./springai-demo009)
+- 内容：文本分块与 Overlap 语义防割裂
 
 ---
 
-### 第十一课： 文本的数学魔法：Embeddings (向量化)
-- **springai-demo008** - [JJava 程序员的 AI 转型第十二课：文本的数学魔法：Embeddings (向量化)](./springai-demo010)
+### 第十二课： 文本的数学魔法：Embeddings (向量化)
+- **springai-demo010** - [Java 程序员的 AI 转型第十二课：文本的数学魔法：Embeddings (向量化)](./springai-demo010)
 - 内容：结合 Spring AI 的 EmbeddingModel 与 Apache Math 库，用纯代码精准计算不同文本之间的语义相似度
+
+### 第十三课： 向量数据库 与 ETL 全链路入库实战
+- **springai-demo011** - [Java 程序员的 AI 转型第十三课：知识库的终极归宿！Spring AI 向量数据库 (Vector Store) 架构演进与 ETL 全链路入库实战](./springai-demo011)
+- 内容：向量数据库架构演进，ETL 全链路入库实战
 
 ---
 
