@@ -14,7 +14,7 @@ import org.springframework.core.io.Resource;
 import java.io.File;
 import java.util.List;
 
-@SpringBootTest(classes = SpringAiDemo010Application.class)
+@SpringBootTest(classes = SpringAiDemo011Application.class)
 public class TestStore {
 
 
