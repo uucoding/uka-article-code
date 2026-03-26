@@ -86,7 +86,7 @@
 
 ### 第十一课： DocumentTransformer 文本切分术
 - **springai-demo009** - [Java 程序员的 AI 转型第十一课：文本切分术！Spring AI 智能分块 (Text Splitters) 与 Overlap 语义防割裂指南](./springai-demo009)
-- 内容：文本分块与 Overlap 语义防割裂
+- 内容：自定义纯语义 Token 切分器 SemanticTokenTextSplitter 进行文本分块与 Overlap 语义防割裂
 
 ---
 

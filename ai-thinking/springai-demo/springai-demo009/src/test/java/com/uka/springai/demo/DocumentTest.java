@@ -1,14 +1,12 @@
 package com.uka.springai.demo;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.document.MetadataMode;
 import org.springframework.ai.model.transformer.KeywordMetadataEnricher;
 import org.springframework.ai.model.transformer.SummaryMetadataEnricher;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
-import org.springframework.ai.transformer.splitter.TokenTextSplitter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,9 +23,8 @@ public class DocumentTest {
 
     @Value("classpath:/docs/alibaba-java-guide.pdf")
     private Resource pdfResource;
-    /**
-     * 按页面解析
-     */
+
+
     @Test
     void processEtlPipeline() {
         System.out.println("--- 1. 执行 ETL-E (Extract) 读取 PDF ---");
@@ -35,9 +32,10 @@ public class DocumentTest {
         List<Document> rawDocuments = reader.get();
         System.out.println("读取到长文档总页数: " + rawDocuments.size());
 
-        System.out.println("\n--- 2. 执行 ETL-T (Transform): Token切块 ---");
-        // 初始化切分器（使用默认比例：800 Chunk Size, 350 Overlap 等）
-        TokenTextSplitter splitter = new TokenTextSplitter();
+        System.out.println("\n--- 2. 执行 ETL-T (Transform): 语义 Token 切块 ---");
+        // 初始化语义切分器：默认 每块最多 800 Token，重叠区 100 Token
+        SemanticTokenTextSplitter splitter = SemanticTokenTextSplitter.builder().build();
+
         List<Document> chunkedDocs = splitter.apply(rawDocuments);
         System.out.println("成功切分为小文本块(Chunks)数量: " + chunkedDocs.size());
 
@@ -60,7 +58,7 @@ public class DocumentTest {
                 , MetadataMode.ALL); // CURRENT 仅总结当前块内容
 
         // 执行加工流水线：给被切碎的文档块，打上高价值的 AI 标签！
-        System.out.println("正在使用大模型阅读文本块并提取特征...");
+        System.out.println("正在使用大模型阅读文本块并提取特征 (这可能需要几十秒)...");
         List<Document> enrichedDocs = keywordEnricher.apply(chunkedDocs);
         enrichedDocs = summaryEnricher.apply(enrichedDocs);
 
