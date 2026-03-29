@@ -22,6 +22,7 @@
 | 第十二课 | 文本的数学魔法：Embeddings (向量化)     | springai-demo010 |
 | 第十三课 | 向量数据库 与 ETL 全链路入库实战     | springai-demo011 |
 | 第十四课 | 向量数据库召回 (Retrieval) 与相似度检索     | springai-demo012 |
+| 第十五课 | 全新模块化 RAG 引擎一键闭环     | springai-demo013 |
 
 
 ---
@@ -103,6 +104,11 @@
 ### 第十四课： 向量数据库召回 (Retrieval) 与相似度检索
 - **springai-demo012** - [Java 程序员的 AI 转型第十四课：大海捞针！Spring AI 向量数据库实操：召回 (Retrieval) 与相似度检索实战](./springai-demo012)
 - 内容：召回 (Retrieval) 与相似度检索实战
+
+---
+### 第十四课：全新模块化 RAG 引擎一键闭环
+- **springai-demo013** - [Java 程序员的 AI 转型第十五课：Spring AI 魔法：全新模块化 RAG 引擎一键闭环](./springai-demo013)
+- 内容：QuestionAnswerAdvisor 与 RetrievalAugmentationAdvisor实战
 
 ---
 

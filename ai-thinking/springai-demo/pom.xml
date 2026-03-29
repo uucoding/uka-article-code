@@ -28,6 +28,7 @@
         <module>springai-demo010</module>
         <module>springai-demo011</module>
         <module>springai-demo012</module>
+        <module>springai-demo013</module>
     </modules>
 
     <properties>
