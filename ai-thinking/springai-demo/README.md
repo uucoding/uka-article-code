@@ -23,6 +23,7 @@
 | 第十三课 | 向量数据库 与 ETL 全链路入库实战     | springai-demo011 |
 | 第十四课 | 向量数据库召回 (Retrieval) 与相似度检索     | springai-demo012 |
 | 第十五课 | 全新模块化 RAG 引擎一键闭环     | springai-demo013 |
+| 第十六课 | 一行代码打通 Tool Calling     | springai-demo014 |
 
 
 ---
@@ -106,9 +107,14 @@
 - 内容：召回 (Retrieval) 与相似度检索实战
 
 ---
-### 第十四课：全新模块化 RAG 引擎一键闭环
+### 第十五课：全新模块化 RAG 引擎一键闭环
 - **springai-demo013** - [Java 程序员的 AI 转型第十五课：Spring AI 魔法：全新模块化 RAG 引擎一键闭环](./springai-demo013)
 - 内容：QuestionAnswerAdvisor 与 RetrievalAugmentationAdvisor实战
+
+---
+### 第十六课：一行代码打通 Tool Calling
+- **springai-demo014** - [Java 程序员的 AI 转型第十六课： 赋予 AI 真实的双手！一行代码打通 Tool Calling 自动闭环状态机](./springai-demo014)
+- 内容：Tool Calling 实战
 
 ---
 
