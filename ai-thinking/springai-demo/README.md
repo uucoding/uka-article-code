@@ -25,6 +25,7 @@
 | 第十五课 | 全新模块化 RAG 引擎一键闭环     | springai-demo013 |
 | 第十六课 | 一行代码打通 Tool Calling     | springai-demo014 |
 | 第十七课 | SpringAI Tool Calling 底层解析     | springai-demo015 |
+| 第十八课 | 构建智能体 Agent：多工具协同     | springai-demo016 |
 
 
 ---
@@ -118,11 +119,14 @@
 - 内容：Tool Calling 实战
 
 ---
----
 ### 第十七课：SpringAI Tool Calling 底层解析
 - **springai-demo015** - [Java 程序员的 AI 转型第十七课：SpringAI Tool Calling 底层核心三剑客与编程式注册源码大揭秘](./springai-demo015)
 - 内容：深入剖析 Tool Calling 的底层接口（ToolCallback、ToolDefinition、ToolCallingManager）
 
+---
+### 第十八课：构建智能体 Agent！多工具协同与 ReAct 动态决策
+- **springai-demo016** - [Java 程序员的 AI 转型第十八课：构建智能体 Agent！多工具协同与 ReAct 动态决策](./springai-demo016)
+- 内容：深刻区分普通大模型问答与真正 AI Agent（智能体）的本质鸿沟。
 ---
 
 ## 🚀 快速开始
