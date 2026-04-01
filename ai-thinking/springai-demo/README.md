@@ -24,6 +24,7 @@
 | 第十四课 | 向量数据库召回 (Retrieval) 与相似度检索     | springai-demo012 |
 | 第十五课 | 全新模块化 RAG 引擎一键闭环     | springai-demo013 |
 | 第十六课 | 一行代码打通 Tool Calling     | springai-demo014 |
+| 第十七课 | SpringAI Tool Calling 底层解析     | springai-demo015 |
 
 
 ---
@@ -115,6 +116,12 @@
 ### 第十六课：一行代码打通 Tool Calling
 - **springai-demo014** - [Java 程序员的 AI 转型第十六课： 赋予 AI 真实的双手！一行代码打通 Tool Calling 自动闭环状态机](./springai-demo014)
 - 内容：Tool Calling 实战
+
+---
+---
+### 第十七课：SpringAI Tool Calling 底层解析
+- **springai-demo015** - [Java 程序员的 AI 转型第十七课：SpringAI Tool Calling 底层核心三剑客与编程式注册源码大揭秘](./springai-demo015)
+- 内容：深入剖析 Tool Calling 的底层接口（ToolCallback、ToolDefinition、ToolCallingManager）
 
 ---
 

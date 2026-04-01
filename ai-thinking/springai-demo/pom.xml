@@ -30,6 +30,7 @@
         <module>springai-demo012</module>
         <module>springai-demo013</module>
         <module>springai-demo014</module>
+        <module>springai-demo015</module>
     </modules>
 
     <properties>
