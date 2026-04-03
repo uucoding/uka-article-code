@@ -26,6 +26,7 @@
 | 第十六课 | 一行代码打通 Tool Calling     | springai-demo014 |
 | 第十七课 | SpringAI Tool Calling 底层解析     | springai-demo015 |
 | 第十八课 | 构建智能体 Agent：多工具协同     | springai-demo016 |
+| 第十九课 | MCP (Model Context Protocol) 协议与无边界插件生态     | springai-demo017 |
 
 
 ---
@@ -127,6 +128,10 @@
 ### 第十八课：构建智能体 Agent！多工具协同与 ReAct 动态决策
 - **springai-demo016** - [Java 程序员的 AI 转型第十八课：构建智能体 Agent！多工具协同与 ReAct 动态决策](./springai-demo016)
 - 内容：深刻区分普通大模型问答与真正 AI Agent（智能体）的本质鸿沟。
+---
+### 第十九课：MCP (Model Context Protocol) 协议与无边界插件生态
+- **springai-demo017** - [Java 程序员的 AI转型第十九课：MCP (Model Context Protocol) 协议与无边界插件生态](./springai-demo017)
+- 内容：MCP理论知识、无边界插件生态
 ---
 
 ## 🚀 快速开始

@@ -1,0 +1,17 @@
+spring:
+  ai:
+    openai:
+      base-url: https://api.openai-hk.com
+      # 密钥认证：使用变量
+      api-key: ${OPEN_AI_API_KEY}
+      chat:
+        # 指定调用的模型名称 gpt-4o
+        options:
+          model: gpt-4o
+    mcp:
+      client:
+        streamable-http:
+          connections:
+            howtocook-mcp:
+              url: https://mcp.api-inference.modelscope.net
+              endpoint: /de89825ec27246/mcp
