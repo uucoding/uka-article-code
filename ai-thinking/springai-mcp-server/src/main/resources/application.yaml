@@ -1,0 +1,13 @@
+spring:
+  ai:
+    mcp:
+      server:
+        #       使用streamable模式
+        protocol: streamable
+        request-timeout: 60s
+
+  # 禁用启动横幅和控制台日志，以确保 STDIO 传输能够正常工作 !!!
+  main:
+    banner-mode: off
+server:
+  port: 9090

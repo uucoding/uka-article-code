@@ -6,27 +6,28 @@
 
 ## 📖 系列课程总览
 
-| 课次   | 主题                         | 模块               |
-|------|----------------------------|------------------|
-| 第一课  | 课程介绍                       | -                |
-| 第二课  | Spring AI 环境搭建与 ChatClient | springai-demo001 |
-| 第三课  | 大模型人设与核心角色                 | springai-demo002 |
-| 第四课  | 提示词模板与多模态                  | springai-demo003 |
-| 第五课  | 结构化输出与流式响应                 | springai-demo004 |
-| 第六课  | Advisor 切面拦截               | springai-demo005 |
-| 第七课  | ChatMemory 对话管理            | springai-demo006 |
-| 第八课  | Token 记忆裁剪与防溢出             | springai-demo007 |
-| 第九课  | RAG核心架构                    | -                |
-| 第十课  | DocumentReader 文档解析器实战     | springai-demo008 |
-| 第十一课 | DocumentTransformer 文本切分术     | springai-demo009 |
-| 第十二课 | 文本的数学魔法：Embeddings (向量化)     | springai-demo010 |
-| 第十三课 | 向量数据库 与 ETL 全链路入库实战     | springai-demo011 |
-| 第十四课 | 向量数据库召回 (Retrieval) 与相似度检索     | springai-demo012 |
-| 第十五课 | 全新模块化 RAG 引擎一键闭环     | springai-demo013 |
-| 第十六课 | 一行代码打通 Tool Calling     | springai-demo014 |
-| 第十七课 | SpringAI Tool Calling 底层解析     | springai-demo015 |
-| 第十八课 | 构建智能体 Agent：多工具协同     | springai-demo016 |
-| 第十九课 | MCP (Model Context Protocol) 协议与无边界插件生态     | springai-demo017 |
+| 课次   | 主题                         | 模块                                                               |
+|------|----------------------------|------------------------------------------------------------------|
+| 第一课  | 课程介绍                       | -                                                                |
+| 第二课  | Spring AI 环境搭建与 ChatClient | springai-demo001                                                 |
+| 第三课  | 大模型人设与核心角色                 | springai-demo002                                                 |
+| 第四课  | 提示词模板与多模态                  | springai-demo003                                                 |
+| 第五课  | 结构化输出与流式响应                 | springai-demo004                                                 |
+| 第六课  | Advisor 切面拦截               | springai-demo005                                                 |
+| 第七课  | ChatMemory 对话管理            | springai-demo006                                                 |
+| 第八课  | Token 记忆裁剪与防溢出             | springai-demo007                                                 |
+| 第九课  | RAG核心架构                    | -                                                                |
+| 第十课  | DocumentReader 文档解析器实战     | springai-demo008                                                 |
+| 第十一课 | DocumentTransformer 文本切分术     | springai-demo009                                                 |
+| 第十二课 | 文本的数学魔法：Embeddings (向量化)     | springai-demo010                                                 |
+| 第十三课 | 向量数据库 与 ETL 全链路入库实战     | springai-demo011                                                 |
+| 第十四课 | 向量数据库召回 (Retrieval) 与相似度检索     | springai-demo012                                                 |
+| 第十五课 | 全新模块化 RAG 引擎一键闭环     | springai-demo013                                                 |
+| 第十六课 | 一行代码打通 Tool Calling     | springai-demo014                                                 |
+| 第十七课 | SpringAI Tool Calling 底层解析     | springai-demo015                                                 |
+| 第十八课 | 构建智能体 Agent：多工具协同     | springai-demo016                                                 |
+| 第十九课 | MCP (Model Context Protocol) 协议与无边界插件生态     | springai-demo017                                                 |
+| 第二十课 | Spring AI MCP 客户端与服务端双向实战     | springai-demo018 / springai-mcp-server |
 
 
 ---
@@ -132,6 +133,11 @@
 ### 第十九课：MCP (Model Context Protocol) 协议与无边界插件生态
 - **springai-demo017** - [Java 程序员的 AI转型第十九课：MCP (Model Context Protocol) 协议与无边界插件生态](./springai-demo017)
 - 内容：MCP理论知识、无边界插件生态
+---
+### 第二十课：手写 Spring AI MCP 客户端与服务端双向实战
+- **springai-demo018** - [Java 程序员的 AI转型第二十课：MCP案例干货：手写 Spring AI MCP 客户端与服务端双向实战: 客户端](./springai-demo018)
+- **springai-mcp-server** - [Java 程序员的 AI转型第二十课：MCP案例干货：手写 Spring AI MCP 客户端与服务端双向实战：服务端](../springai-mcp-server)
+- 内容：Spring AI MCP 实战
 ---
 
 ## 🚀 快速开始
