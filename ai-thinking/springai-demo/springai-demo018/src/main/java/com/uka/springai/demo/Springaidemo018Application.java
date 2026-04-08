@@ -14,7 +14,7 @@ import java.util.Map;
 public class Springaidemo018Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Springaidemo018Application.class, args);
+        SpringApplication.run(Springaidemo018Application.class, args).close();
     }
 
 
