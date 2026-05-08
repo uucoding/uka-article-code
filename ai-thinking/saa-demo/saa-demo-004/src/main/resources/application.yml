@@ -1,0 +1,17 @@
+spring:
+  ai:
+    dashscope:
+      # 从环境变量中读取
+      api-key: ${AI_DASHSCOPE_API_KEY}
+      chat:
+        options:
+          # 2. 指定模型
+          model: qwen-max
+management:
+  endpoints:
+    web:
+      exposure:
+        # 4. 开启 Actuator 观测端点
+        include: health,info,metrics
+server:
+  port: 9999
