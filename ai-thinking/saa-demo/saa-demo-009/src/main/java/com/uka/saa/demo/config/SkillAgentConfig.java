@@ -1,4 +1,4 @@
-package com.uka.saa.demo;
+package com.uka.saa.demo.config;
 
 import com.alibaba.cloud.ai.graph.agent.ReactAgent;
 import com.alibaba.cloud.ai.graph.agent.hook.skills.SkillsAgentHook;
@@ -7,13 +7,8 @@ import com.alibaba.cloud.ai.graph.agent.tools.ShellTool2;
 import com.alibaba.cloud.ai.graph.checkpoint.savers.MemorySaver;
 import com.alibaba.cloud.ai.graph.skills.registry.classpath.ClasspathSkillRegistry;
 import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.ai.support.ToolCallbacks;
-import org.springframework.ai.tool.ToolCallback;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * 第 9 讲 Skills Agent 配置。
@@ -49,22 +44,17 @@ public class SkillAgentConfig {
      */
     @Bean("skillAgent")
     public ReactAgent skillAgent(ChatModel chatModel, ClasspathSkillRegistry skillRegistry) {
-        ShellTool2 shellTool = ShellTool2.builder(System.getProperty("user.dir"))
-                .withCommandTimeout(10_000)
-                .withMaxOutputLines(80)
-                .build();
-        ToolCallback[] shellCallbacks = ToolCallbacks.from(shellTool);
 
         SkillsAgentHook skillsAgentHook = SkillsAgentHook.builder()
                 // 1. SkillsAgentHook 暴露 read_skill 工具，并把 Skill 列表注入模型请求。
                 .skillRegistry(skillRegistry)
-                // 2. 当模型读取 wechat-writing-rules 后，再把 shell 工具动态注入给模型。
-                .groupedTools(Map.of("wechat-writing-rules", List.of(shellCallbacks)))
                 .build();
-
         ShellToolAgentHook shellToolAgentHook = ShellToolAgentHook.builder()
-                // 3. ShellToolAgentHook 负责 shell session 的初始化和清理。
-                .shellTool2(shellTool)
+                // 2. ShellToolAgentHook 负责 shell session 的初始化和清理。
+                .shellTool2(ShellTool2.builder(System.getProperty("user.dir"))
+                        .withCommandTimeout(10_000)
+
+                        .build())
                 .build();
 
         return ReactAgent.builder()
