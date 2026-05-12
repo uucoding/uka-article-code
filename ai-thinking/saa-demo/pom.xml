@@ -24,6 +24,7 @@
         <module>saa-demo-007</module>
         <module>saa-demo-008</module>
         <module>saa-demo-009</module>
+        <module>saa-demo-010</module>
     </modules>
 
     <properties>
