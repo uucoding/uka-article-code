@@ -1,0 +1,13 @@
+spring:
+  application:
+    # 1. 第 11 讲只做职责边界分析，不依赖外部模型 Key。
+    name: saa-demo-011
+management:
+  endpoints:
+    web:
+      exposure:
+        # 2. 开启最小观测端点，方便验证应用是否启动。
+        include: health,info,metrics
+server:
+  # 3. demo 模块使用独立端口，避免和历史 lesson 模块冲突。
+  port: 9511
