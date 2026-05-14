@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SaaDemo011Application {
 
     public static void main(String[] args) {
+        // 保留标准 Spring Boot 启动方式，方便课程中直接运行当前 demo 模块。
         SpringApplication.run(SaaDemo011Application.class, args);
     }
 

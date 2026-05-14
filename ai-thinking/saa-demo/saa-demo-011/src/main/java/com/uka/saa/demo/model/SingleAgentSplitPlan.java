@@ -21,6 +21,7 @@ public record SingleAgentSplitPlan(
 ) {
 
     public SingleAgentSplitPlan {
+        // 输出结果同样保持不可变，确保测试和调用方拿到的是稳定的分析快照。
         signals = List.copyOf(signals == null ? List.of() : signals);
         suggestedAgents = List.copyOf(suggestedAgents == null ? List.of() : suggestedAgents);
     }

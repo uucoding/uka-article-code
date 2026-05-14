@@ -27,6 +27,7 @@ public record SingleAgentTaskRequest(
 ) {
 
     public SingleAgentTaskRequest {
+        // record 入参在构造阶段统一转成不可变 List，避免调用方后续修改影响分析结果。
         goals = List.copyOf(goals == null ? List.of() : goals);
         tools = List.copyOf(tools == null ? List.of() : tools);
         outputs = List.copyOf(outputs == null ? List.of() : outputs);

@@ -24,6 +24,7 @@ public class SingleAgentBoundaryAnalyzer {
      * @return 拆分建议
      */
     public SingleAgentSplitPlan analyze(SingleAgentTaskRequest request) {
+        // 先收集任务画像中的拆分信号，再根据规则选择最合适的编排模式。
         List<String> signals = collectSignals(request);
         AgentWorkflowMode mode = chooseMode(request, signals);
         boolean shouldSplit = mode != AgentWorkflowMode.SINGLE_AGENT;
@@ -40,6 +41,7 @@ public class SingleAgentBoundaryAnalyzer {
     private List<String> collectSignals(SingleAgentTaskRequest request) {
         List<String> signals = new ArrayList<>();
 
+        // 目标、工具、输出数量过多，说明单个 Agent 的职责边界开始变宽。
         if (request.goals().size() > 2) {
             signals.add("目标混杂：一个 Agent 同时承担多个不同目标");
         }
@@ -49,6 +51,8 @@ public class SingleAgentBoundaryAnalyzer {
         if (request.outputs().size() > 2) {
             signals.add("输出责任混杂：同一轮结果要服务多个下游消费者");
         }
+
+        // 流程、并行、路由和风险信号，决定后续更适合哪种多 Agent 协作形态。
         if (request.orderedSteps()) {
             signals.add("流程依赖：后一步必须等待前一步产出");
         }
@@ -66,9 +70,11 @@ public class SingleAgentBoundaryAnalyzer {
     }
 
     private AgentWorkflowMode chooseMode(SingleAgentTaskRequest request, List<String> signals) {
+        // 信号不足两个且没有高风险动作时，继续使用单 Agent 更简单。
         if (signals.size() < 2 && !request.highRiskAction()) {
             return AgentWorkflowMode.SINGLE_AGENT;
         }
+        // 优先处理会明显改变编排方式的结构性信号。
         if (request.dynamicRouting()) {
             return AgentWorkflowMode.LLM_ROUTING_AGENT;
         }
@@ -81,13 +87,16 @@ public class SingleAgentBoundaryAnalyzer {
         if (request.highRiskAction()) {
             return AgentWorkflowMode.SUPERVISOR_AGENT;
         }
+        // 工具数量过多时，可先拆成“Agent 调工具型”职责结构。
         if (request.tools().size() > 3) {
             return AgentWorkflowMode.AGENT_TOOL;
         }
+        // 其余复杂但没有固定流程特征的任务，适合通过交接给专门 Agent 处理。
         return AgentWorkflowMode.HANDOFF;
     }
 
     private int calculateComplexityScore(SingleAgentTaskRequest request, List<String> signals) {
+        // 分数只用于演示：信号是主权重，目标、工具、输出数量作为补充权重。
         int score = signals.size() * 10;
         score += Math.max(0, request.goals().size() - 1) * 2;
         score += Math.max(0, request.tools().size() - 1) * 2;
@@ -98,6 +107,7 @@ public class SingleAgentBoundaryAnalyzer {
     private List<String> suggestAgents(SingleAgentTaskRequest request) {
         List<String> agents = new ArrayList<>();
 
+        // 建议的 Agent 名称对应课程里的职责拆分，不绑定具体框架实现。
         if (!request.goals().isEmpty() || request.orderedSteps()) {
             agents.add("planning_agent");
         }
@@ -117,6 +127,7 @@ public class SingleAgentBoundaryAnalyzer {
             agents.add("parallel_worker_agent");
         }
 
+        // 多个规则可能给出同一个 Agent，最终结果去重后保持首次出现顺序。
         return agents.stream().distinct().toList();
     }
 
