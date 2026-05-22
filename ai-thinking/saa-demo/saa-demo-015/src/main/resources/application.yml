@@ -1,0 +1,21 @@
+spring:
+  ai:
+    dashscope:
+      # 1. 本讲 demo 不调用真实模型，保留默认值只为避免本地测试被环境变量阻塞。
+      api-key: ${AI_DASHSCOPE_API_KEY:dummy}
+      chat:
+        options:
+          # 2. 真实接入 ReactAgent 时可以沿用同一模型锚点。
+          model: qwen-max
+  application:
+    # 3. 第 15 讲演示自定义条件分支和循环修正。
+    name: saa-demo-015
+management:
+  endpoints:
+    web:
+      exposure:
+        # 4. 开启最小观测端点，方便验证应用是否启动。
+        include: health,info,metrics
+server:
+  # 5. demo 模块使用独立端口，避免和历史 lesson 模块冲突。
+  port: 9515
