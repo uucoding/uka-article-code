@@ -1,0 +1,17 @@
+spring:
+  ai:
+    # 1. 第 17 讲只演示本地条件 Agent，不触发 DashScope 自动配置。
+    dashscope:
+      enabled: false
+  application:
+    # 2. 第 17 讲只演示本地条件 Agent，不依赖真实大模型。
+    name: saa-demo-017
+management:
+  endpoints:
+    web:
+      exposure:
+        # 3. 开启最小观测端点，方便验证应用是否启动。
+        include: health,info,metrics
+server:
+  # 4. demo 模块使用独立端口，避免和历史 lesson 模块冲突。
+  port: 9517
