@@ -1,0 +1,22 @@
+spring:
+  ai:
+    dashscope:
+      # 1. 真实调用 DashScope，未设置环境变量时测试会跳过真实集成用例。
+      api-key: ${AI_DASHSCOPE_API_KEY:dummy}
+      chat:
+        options:
+          # 2. 固定模型锚点，方便观察 RAG 上下文注入效果。
+          model: qwen-max
+          temperature: 0.2
+  application:
+    # 3. 第 18 讲演示 ReactAgent + 内存 VectorStore 的最小 RAG 链路。
+    name: saa-demo-018
+management:
+  endpoints:
+    web:
+      exposure:
+        # 4. 开启最小观测端点，方便验证应用是否启动。
+        include: health,info,metrics
+server:
+  # 5. demo 模块使用独立端口，避免和历史 lesson 模块冲突。
+  port: 9518
