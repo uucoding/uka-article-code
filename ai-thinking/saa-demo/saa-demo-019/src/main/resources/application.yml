@@ -1,0 +1,45 @@
+spring:
+  ai:
+    dashscope:
+      # 1. 第 19 讲保留真实 ReactAgent Bean，未配置密钥时不触发真实模型调用。
+      api-key: ${AI_DASHSCOPE_API_KEY:dummy}
+      chat:
+        options:
+          # 2. 固定模型锚点，真实运行本地 Agent 时使用。
+          model: qwen-max
+          temperature: 0.2
+    alibaba:
+      a2a:
+        server:
+          version: 1.0.0
+          card:
+            # 该名称必须与 ReactAgent.name() 保持一致。
+            name: writing_research_agent
+            description: 负责围绕写作主题生成研究判断和文章结构的 Agent
+            # 供应商配置
+            provider:
+              name: uka-saa-demo
+              organization: uka-saa
+              url: https://uka-saa.com
+
+        nacos:
+          # 启用 registry / discovery，使用 Nacos provider。
+          server-addr: 127.0.0.1:8848
+          username: nacos
+          password: nacos
+          registry:
+            enabled: true
+          discovery:
+            enabled: true
+  application:
+    # 5. 第 19 讲演示 A2A AgentCard、发现与远程代理调用。
+    name: saa-demo-019
+management:
+  endpoints:
+    web:
+      exposure:
+        # 7. 开启最小观测端点，方便验证应用是否启动。
+        include: health,info,metrics
+server:
+  # 8. demo 模块使用独立端口，避免和历史 lesson 模块冲突。
+  port: 9519
